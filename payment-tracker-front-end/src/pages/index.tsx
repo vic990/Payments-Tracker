@@ -1,7 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import Login from "../components/Login";
-import ProtectedRoute from "../components/ProtectedRoute";
-import Dashboard from "../components/Dashboard";
+import Login from "../Compo/Login";
+import ProtectedRoute from "../Compo/ProtectedRoute";
+import Dashboard from "../Compo/Dashboard/Dashboard";
+import Layout from "../Compo/Layout/Layout";
 
 const router = createBrowserRouter([
   {
@@ -13,8 +14,13 @@ const router = createBrowserRouter([
     element: <ProtectedRoute />,
     children: [
       {
-        path: "/dashboard",
-        element: <Dashboard />,
+        path: "/layout",
+        children: [
+          {
+            index: true,
+            element: <Layout />,
+          },
+        ],
       },
     ],
   },

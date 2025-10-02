@@ -1,10 +1,12 @@
+import { RouterProvider } from "react-router-dom";
+import { AuthProvider } from "./Compo/auth/AuthProvider";
+import router from "./pages";
+
 function App() {
   return (
-    <>
-      <div></div>
-      <h1>Payment Tracker</h1>
-      <div className="card"></div>
-    </>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   );
 }
 

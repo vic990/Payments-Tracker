@@ -27,11 +27,15 @@ import {
   MdVisibility,
   MdVisibilityOff,
 } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 import { AuthResponse, LoginCredentials } from "../types";
 import { API_URL } from "./auth/constants";
-import { set } from "react-hook-form";
+import { useAuth } from "../Compo/auth/AuthProvider";
+//import { set } from "react-hook-form";
 
 function Login() {
+  const auth = useAuth();
+  const goTo = useNavigate();
   const [credentials, setCredentials] = useState<LoginCredentials>({
     email: "",
     password: "",
@@ -41,65 +45,12 @@ function Login() {
   const [error, setError] = useState("");
   ///aqui hay que poner el de autenticacion
   // const {login, isLoading}={}
-  let success = null;
+  //let success = null;
 
   const toast = useToast();
 
   const bgColor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
-
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   setError("");
-
-  //   if (!credentials.email || !credentials.password) {
-  //     setError("Por favor complete todos los campos");
-  //     return;
-  //   }
-
-  //   // const success = await login(credentials);
-  //   if (!success) {
-  //     setError("Credenciales incorrectas");
-  //     toast({
-  //       title: "Error de autenticación",
-  //       description: "Email o contraseña incorrectos",
-  //       status: "error",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //   } else {
-  //     toast({
-  //       title: "Bienvenido",
-  //       description: "Has iniciado sesión correctamente",
-  //       status: "success",
-  //       duration: 3000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // };
-
-  async function oldhandleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError("");
-
-    if (!credentials.email || !credentials.password) {
-      setError("Por favor complete los campos");
-      toast({
-        title: "Campos vacios",
-        description: error,
-        status: "error",
-        duration: 3000,
-        isClosable: true,
-      });
-      return;
-    }
-    console.log(
-      "desde handlesubmit",
-      credentials.email,
-      " and ",
-      credentials.password
-    );
-  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -129,9 +80,14 @@ function Login() {
       });
 
       if (response.ok) {
-        console.log("Login successful");
         setError("");
         const json = (await response.json()) as AuthResponse;
+        console.log(json);
+        if (json.body.accessToken && json.body.refreshToken) {
+          auth.saveUser(json);
+          console.log("Login successful");
+          goTo("/layout");
+        }
       }
     } catch (error) {}
   }
