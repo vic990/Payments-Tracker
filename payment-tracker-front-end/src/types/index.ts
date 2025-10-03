@@ -30,3 +30,46 @@ export interface AccessTokenResponse {
   };
   error?: string;
 }
+
+//Borrar todo esto luego
+export interface UserMock {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  role?: "admin" | "user";
+}
+
+export interface Payment {
+  id: string;
+  amount: number;
+  concept: string;
+  ownerId: string; // Usuario al que le pertenece el gasto
+  payerId: string; // Usuario que realiza el pago
+  date: string;
+  status: "completed" | "pending" | "failed";
+  category: string;
+  notes?: string;
+}
+
+export interface PaymentFormData {
+  amount: number;
+  concept: string;
+  ownerId: string;
+  payerId: string;
+  category: string;
+  notes?: string;
+}
+
+export interface AuthUser {
+  id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  role: "admin" | "user";
+}
+
+export interface LoginCredentials {
+  email: string;
+  password: string;
+}
