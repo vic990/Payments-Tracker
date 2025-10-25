@@ -11,6 +11,15 @@ export interface AuthResponse {
   };
 }
 
+export interface jsonResponse<T = unknown> {
+  statusCode: number;
+  body: {
+    message: string;
+    data?: T;
+    error: unknown;
+  };
+}
+
 export interface AuthResponseError {
   body: {
     error: string;
@@ -54,10 +63,8 @@ export interface Payment {
 
 export interface PaymentFormData {
   amount: number;
-  concept: string;
   ownerId: string;
   payerId: string;
-  category: string;
   notes?: string;
 }
 

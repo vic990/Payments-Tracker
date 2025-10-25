@@ -89,7 +89,9 @@ function Login() {
           goTo("/layout");
         }
       }
-    } catch (error) {}
+    } catch (error) {
+      setError("Error");
+    }
   }
 
   const handleInputChange = (field: keyof LoginCredentials, value: string) => {
