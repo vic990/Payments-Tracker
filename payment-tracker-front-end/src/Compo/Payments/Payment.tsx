@@ -1,9 +1,17 @@
 import {
   Box,
   Card,
-  CardBody,
+  Heading,
+  SimpleGrid,
+  Center,
+  Divider,
+  Table,
+  TableContainer,
+  Thead,
+  Tr,
+  Td,
   useColorModeValue,
-  VStack,
+  CardHeader,
 } from "@chakra-ui/react";
 
 function Payment() {
@@ -11,20 +19,67 @@ function Payment() {
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
   return (
-    <Box>
-      <Card
-        bg={bgColor}
-        borderColor={borderColor}
-        borderWidth="1px"
-        shadow="sm"
-      >
-        <CardBody p={8}>
-          <VStack spacing={8} align="stretch">
-            <Box></Box>
-          </VStack>
-        </CardBody>
-      </Card>
-    </Box>
+    <>
+      <Box>
+        <Card
+          bg={bgColor}
+          borderColor={borderColor}
+          borderWidth="1px"
+          shadow="sm"
+        >
+          <CardHeader>
+            <Heading size="sm" textTransform={"uppercase"}>
+              Mis Pagos Realizados
+            </Heading>
+          </CardHeader>
+          <SimpleGrid minChildWidth="120px" spacing={6}>
+            <TableContainer>
+              <Table variant="striped" colorScheme="teal">
+                <Thead>
+                  <Tr>
+                    <Td>Monto</Td>
+                    <Td>Notas</Td>
+                  </Tr>
+                </Thead>
+              </Table>
+            </TableContainer>
+          </SimpleGrid>
+        </Card>
+      </Box>
+
+      <Center height="50px">
+        <Divider orientation="horizontal" />
+      </Center>
+
+      <Box>
+        <Card
+          bg={bgColor}
+          borderColor={borderColor}
+          borderWidth="1px"
+          shadow="sm"
+        >
+          <CardHeader>
+            <Heading size="sm" textTransform={"uppercase"}>
+              Pagos Que He Realizado Por Otros
+            </Heading>
+          </CardHeader>
+
+          <SimpleGrid minChildWidth="120px" spacing={6}>
+            <TableContainer>
+              <Table variant="striped" colorScheme="teal">
+                <Thead>
+                  <Tr>
+                    <Td>Nombre</Td>
+                    <Td>Monto</Td>
+                    <Td>Notas</Td>
+                  </Tr>
+                </Thead>
+              </Table>
+            </TableContainer>
+          </SimpleGrid>
+        </Card>
+      </Box>
+    </>
   );
 }
 
