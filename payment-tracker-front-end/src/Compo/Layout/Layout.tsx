@@ -1,15 +1,12 @@
-import { ReactNode, useState } from "react";
-import { useAuth } from "../auth/AuthProvider";
+import { useState } from "react";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Dashboard from "../Dashboard/Dashboard";
 import { Flex, Box } from "@chakra-ui/react";
 import NewPaymentForm from "../Payments/NewPaymentsForm";
-
-type Props = { children?: ReactNode };
+import Payment from "../Payments/Payment";
 
 function Layout() {
-  const auth = useAuth();
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const renderContent = () => {
@@ -18,6 +15,8 @@ function Layout() {
         return <Dashboard />;
       case "new-payment":
         return <NewPaymentForm />;
+      case "payments":
+        return <Payment />;
       default:
         return <Dashboard />;
     }

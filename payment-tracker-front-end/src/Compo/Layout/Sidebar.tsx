@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, VStack, Button, Icon, useColorModeValue } from "@chakra-ui/react";
 import {
   MdHome,

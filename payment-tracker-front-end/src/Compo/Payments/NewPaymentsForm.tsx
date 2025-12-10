@@ -21,7 +21,6 @@ import {
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { mockUsers } from "../../data/mockData";
 import { jsonResponse, PaymentFormData, User } from "../../types";
 import {
   MdAttachMoney,
@@ -76,8 +75,8 @@ function NewPaymentForm() {
         },
         body: JSON.stringify({
           amount: formData.amount,
-          paid_by_user_id: parseInt(formData.ownerId),
-          paid_on_behalf_of_user_id: parseInt(formData.payerId),
+          paid_by_user_id: parseInt(formData.payerId),
+          paid_on_behalf_of_user_id: parseInt(formData.ownerId),
           notes: formData.notes,
         }),
       });
@@ -218,7 +217,7 @@ function NewPaymentForm() {
                   )}
                 </FormControl>
 
-                {/*Propietario del gasto y quin paga */}
+                {/*Propietario del gasto y quien paga */}
                 <SimpleGrid columns={{ base: 1, md: 2 }} spacing={6}>
                   <FormControl
                     isRequired
@@ -227,7 +226,7 @@ function NewPaymentForm() {
                     <FormLabel>
                       <HStack>
                         <Icon as={MdPerson} boxSize={4} />
-                        <Text>Propietarios del Gasto</Text>
+                        <Text>Propietarios del Gasto (Paga en vez de:)</Text>
                       </HStack>
                     </FormLabel>
                     <Select
@@ -296,7 +295,7 @@ function NewPaymentForm() {
                       </Text>
                     ) : (
                       <Text>
-                        <strong>Pago por otro </strong>
+                        <strong>Pago por otro: </strong>
                         {selectedPayer.user_name} paga por{" "}
                         {selectedOwner.user_name}
                       </Text>

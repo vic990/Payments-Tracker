@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Heading, Text, SimpleGrid, VStack } from "@chakra-ui/react";
 import {
   MdCreditCard,
@@ -9,7 +8,6 @@ import {
 import StatsCard from "./StatsCards";
 import RecentPayments from "./RecentPayments";
 import PaymentChart from "./PaymentChart";
-import { useAuth } from "../auth/AuthProvider";
 
 function Dashboard() {
   // const auth = useAuth();
