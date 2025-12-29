@@ -17,14 +17,24 @@ function Sidebar({ activeTab, onTabChange }: SidebarProps) {
   const bgcolor = useColorModeValue("white", "gray.800");
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
+  const userStored = localStorage.getItem("user");
+  const role = userStored ? JSON.parse(userStored).role_id : null;
+
   const menuItems = [
     { id: "dashboard", icon: MdHome, label: "Dashboard" },
     { id: "new-payment", icon: MdAdd, label: "Nuevo Pago" },
     { id: "payments", icon: MdCreditCard, label: "Pagos" },
     { id: "users", icon: MdPeople, label: "Usuarios" },
-    { id: "reports", icon: MdBarChart, label: "Reportes" },
-    { id: "history", icon: MdHistory, label: "Historial" },
+    // { id: "reports", icon: MdBarChart, label: "Reportes" },
+    // { id: "history", icon: MdHistory, label: "Historial" },
   ];
+
+  const menuFiltered = menuItems.filter((item) => {
+    if (item.id === "users" && role !== 1) {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <Box
@@ -36,7 +46,7 @@ function Sidebar({ activeTab, onTabChange }: SidebarProps) {
       shadow="sm"
     >
       <VStack spacing={2} p={4} mt={8}>
-        {menuItems.map((item) => (
+        {menuFiltered.map((item) => (
           <Button
             key={item.id}
             w="full"

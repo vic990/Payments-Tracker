@@ -35,7 +35,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   function saveUser(userData: AuthResponse) {
-    console.log(userData);
     saveSession(
       userData.body.user,
       userData.body.accessToken,

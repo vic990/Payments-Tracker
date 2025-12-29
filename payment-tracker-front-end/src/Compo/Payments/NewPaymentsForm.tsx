@@ -21,7 +21,12 @@ import {
   SimpleGrid,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { jsonResponse, PaymentFormData, User } from "../../types";
+import {
+  jsonResponse,
+  PaymentFormData,
+  User,
+  PaymentResponse,
+} from "../../types";
 import {
   MdAttachMoney,
   MdPerson,
@@ -37,13 +42,6 @@ const empytFormData: PaymentFormData = {
   payerId: "",
   notes: "",
 };
-
-interface paymentResponse {
-  body: {
-    success: boolean;
-    message: string;
-  };
-}
 
 function NewPaymentForm() {
   const [formData, setFormData] = useState<PaymentFormData>(empytFormData);
@@ -80,7 +78,7 @@ function NewPaymentForm() {
           notes: formData.notes,
         }),
       });
-      const json = (await response.json()) as paymentResponse;
+      const json = (await response.json()) as PaymentResponse;
 
       if (response.ok) {
         setErrors({});

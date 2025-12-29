@@ -82,10 +82,8 @@ function Login() {
       if (response.ok) {
         setError("");
         const json = (await response.json()) as AuthResponse;
-        console.log(json);
         if (json.body.accessToken && json.body.refreshToken) {
           auth.saveUser(json);
-          console.log("Login successful");
           goTo("/layout");
         }
       }

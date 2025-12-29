@@ -5,6 +5,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import { Flex, Box } from "@chakra-ui/react";
 import NewPaymentForm from "../Payments/NewPaymentsForm";
 import Payment from "../Payments/Payment";
+import UserList from "../Users/UserList";
 
 function Layout() {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -17,6 +18,8 @@ function Layout() {
         return <NewPaymentForm />;
       case "payments":
         return <Payment />;
+      case "users":
+        return <UserList />;
       default:
         return <Dashboard />;
     }

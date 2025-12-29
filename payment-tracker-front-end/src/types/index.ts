@@ -20,6 +20,34 @@ export interface jsonResponse<T = unknown> {
   };
 }
 
+export interface PaymentResponse {
+  body: {
+    success: boolean;
+    message: string;
+    error?: string;
+  };
+}
+
+export interface dataResponse {
+  body: {
+    message: string;
+    data: UserPaymentResponseDTO;
+  };
+}
+
+export interface PaymentDTO {
+  id: number;
+  name: string;
+  amount: number;
+  notes: string;
+  created_at: Date;
+}
+
+export interface UserPaymentResponseDTO {
+  own: PaymentDTO[];
+  onBehalf: PaymentDTO[];
+}
+
 export interface AuthResponseError {
   body: {
     error: string;
@@ -74,9 +102,4 @@ export interface AuthUser {
   email: string;
   avatar?: string;
   role: "admin" | "user";
-}
-
-export interface LoginCredentials {
-  email: string;
-  password: string;
 }
